@@ -1,0 +1,18 @@
+{
+    "name": "carlsson/confuser",
+    "require-dev": {
+        "phpunit/phpunit": "^5.3"
+    },
+    "authors": [
+        {
+            "name": "Daniel Carlsson",
+            "email": "daniel.carlsson@hemsida24.se"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Confuser\\": "src/"
+        }
+    },
+    "require": {}
+}
