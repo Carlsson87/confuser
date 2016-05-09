@@ -1,7 +1,11 @@
 <?php
 
-$number = (int) $argv[1];
-
 require 'src/Confuser.php';
 
-echo Carlsson\Confuser::confuse($number) . "\n";
+$input = $argv[1];
+
+if (is_numeric($input)) {
+    echo Confuser\Confuser::toString((int) $input) . "\n";
+} else {
+    echo Confuser\Confuser::toInt($input) . "\n";
+}
