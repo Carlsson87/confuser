@@ -26,7 +26,7 @@ class Confuser {
         // Create a string of characters to "pad" the hex value with.
         $str = implode(array_map(function($i) {
             return chr(71 + $i % 20); 
-        }, range($int, $int * (8 - strlen($hex)), $int)));
+        }, range($int, $int * (10 - strlen($hex)), $int)));
 
         // Pad right if odd, pad left if even.
         return ($int % 2) ? $hex . $str : $str . $hex;
@@ -42,12 +42,18 @@ class Confuser {
     {
         // Assert that the input is valid.
         if (!is_string($str) || strlen($str) !== 10) {
-            throw new \Exception('Input need to be a string of 8 characters');
+            throw new \Exception('Input need to be a string of 10 characters');
         }
 
         // Filter out the valid hex characters and convert to integer.
-        return hexdec(implode(array_filter(str_split($str), function($char) {
+        $int = hexdec(implode(array_filter(str_split($str), function($char) {
             return is_int(strpos('0123456789ABCDEF', $char));
         })));
+
+        if ($str !== static::toString($int)) {
+            throw new \Exception('The string provided does not match the pattern used by this class');
+        }
+
+        return $int;
     }
 }
